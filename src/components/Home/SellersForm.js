@@ -8,8 +8,8 @@ const productNameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return { value: action.val, isvalid: action.val.length > 3 };
   }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isvalid: state.value.length > 3 };
+  if (action.type === "RESTORE_INPUT") {
+    return { value: "", isvalid: null };
   }
   return { value: "", isvalid: false };
 };
@@ -17,6 +17,9 @@ const productNameReducer = (state, action) => {
 const priceReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return { value: action.val, isvalid: +action.val > 0 };
+  }
+  if (action.type === "RESTORE_INPUT") {
+    return { value: "", isvalid: null };
   }
   return { value: "", isvalid: false };
 };
@@ -65,7 +68,15 @@ const SellersForm = (props) => {
         price: priceState.value,
         category,
       };
+
       props.onAddProduct(newProduct);
+      dispatchProductName({
+        type: "RESTORE_INPUT",
+      });
+      dispatchPrice({
+        type: "RESTORE_INPUT",
+      });
+      setCategory("");
     } else if (!productNameState.isvalid) {
       productNameRef.current.focus();
     } else if (!priceState.isvalid) {
@@ -93,7 +104,7 @@ const SellersForm = (props) => {
             ref={productNameRef}
             type="text"
             id="pName"
-            value={productNameState.val}
+            value={productNameState.value}
             onChange={productNamehandler}
           />
         </div>
@@ -107,7 +118,7 @@ const SellersForm = (props) => {
             ref={priceRef}
             type="number"
             id="price"
-            value={priceState.val}
+            value={priceState.value}
             onChange={priceChangeHandler}
           />
         </div>
