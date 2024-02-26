@@ -1,0 +1,43 @@
+.products-list {
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 40rem;
+  padding: 1rem;
+}
+
+.products {
+  padding: 0px;
+  margin: 0px;
+}
+
+.products ul {
+  list-style: none;
+}
+
+.products li {
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  font: inherit;
+  border: 1px solid #da2121;
+  background: #da2121;
+  color: white;
+  cursor: pointer;
+  padding: 5px 15px;
+  font-size: 0.9rem;
+}
+
+.button:hover,
+.button:active {
+  background: #940b0b;
+  border-color: #940b0b;
+}
+
+.button:focus {
+  outline: none;
+}
